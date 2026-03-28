@@ -1,5 +1,3 @@
-html
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -351,9 +349,10 @@ html
     background: var(--space-dark);
     border: 1px solid rgba(79,195,195,0.15);
     border-radius: 4px;
-    aspect-ratio: 4/3;
     position: relative;
     overflow: hidden;
+    width: 100%;
+    height: 480px;
   }
   .sim-canvas-wrap {
     width: 100%; height: 100%;
@@ -1041,8 +1040,693 @@ html
       </div>
       <div class="event-item">
         <div class="event-year">2023</div>
-        <div
+        <div class="event-info"><h4>NASA 우선 탐사 목표 선정</h4><p>미국 행성과학 10년 계획에서 천왕성 탐사선이 최우선 대형 임무로 선정됨.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<footer>
+  <div class="footer-logo">URANUS OBSERVER</div>
+  <div class="footer-note">DATA FROM NASA / ESA — EDUCATIONAL PURPOSE</div>
+  <div class="footer-note">© 2025 URANUS OBSERVER PROJECT</div>
+</footer>
 
+<!-- MODALS -->
+<div class="modal-overlay" id="modal-solar">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('solar')">✕</button>
+    <h2>☀️ 태양풍 & 태양 활동</h2>
+    <p>태양에서 방출되는 하전 입자의 흐름인 태양풍은 초속 400~800km 속도로 태양계 전체를 휩쓸며 천왕성의 자기권에 도달합니다. 태양으로부터 19.19 AU 거리에서도 태양풍의 영향은 상당합니다.</p>
+    <p>코로나 물질 방출(CME) 시에는 평상시보다 1,000배 이상 강력한 입자 폭풍이 천왕성을 타격하며, 자기권을 압축하고 고에너지 오로라를 생성합니다. 동시에 대기 상층의 열권 온도가 급격히 상승합니다.</p>
+    <p>천왕성의 비대칭 자기장(자전축과 59° 어긋남)은 태양풍과의 복잡한 상호작용을 만들어 내며, 자기권이 하루에도 여러 차례 개폐를 반복하는 것으로 추정됩니다.</p>
+    <div class="modal-stats">
+      <div class="modal-stat"><div class="modal-stat-key">태양풍 평균 속도</div><div class="modal-stat-val">450 km/s</div></div>
+      <div class="modal-stat"><div class="modal-stat-key">CME 발생 빈도</div><div class="modal-stat-val">월 3~5회</div></div>
+      <div class="modal-stat"><div class="modal-stat-key">자기권 반경</div><div class="modal-stat-val">59만 km</div></div>
+      <div class="modal-stat"><div class="modal-stat-key">오로라 에너지</div><div class="modal-stat-val">최대 10¹³ W</div></div>
+    </div>
+  </div>
+</div>
 
+<div class="modal-overlay" id="modal-meteor">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('meteor')">✕</button>
+    <h2>☄️ 소행성 충돌 & 우주 물체</h2>
+    <p>현재 천왕성 주변에는 카이퍼 벨트에서 유래한 소형 천체들이 꾸준히 접근하고 있습니다. 대부분은 중력에 의해 방향이 바뀌지만, 일부는 대기권에 진입하여 충돌 이벤트를 일으킵니다.</p>
+    <p>과학계에서는 약 40억 년 전, 지구 질량 1~3배의 천체가 천왕성에 충돌하여 현재의 97.77° 자전축 기울기를 만들었다는 가설이 유력합니다. 이 충돌은 천왕성의 기후, 대기, 자기장 방향에 근본적인 변화를 가져왔습니다.</p>
+    <p>현재에도 소규모 충돌이 발생하며 고리 시스템에 새로운 물질을 공급하고, 대기 조성을 일시적으로 변화시킵니다.</p>
+    <div class="modal-stats">
+      <div class="modal-stat"><div class="modal-stat-key">추정 충돌 시기</div><div class="modal-stat-val">40억 년 전</div></div>
+      <div class="modal-stat"><div class="modal-stat-key">자전축 기울기</div><div class="modal-stat-val">97.77°</div></div>
+      <div class="modal-stat"><div class="modal-stat-key">충돌체 예상 질량</div><div class="modal-stat-val">지구×1~3</div></div>
+      <div class="modal-stat"><div class="modal-stat-key">현재 소행성 접근</div><div class="modal-stat-val">연간 수백 개</div></div>
+    </div>
+  </div>
+</div>
 
+<div class="modal-overlay" id="modal-gravity">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('gravity')">✕</button>
+    <h2>🌐 중력 영향 (다른 행성)</h2>
+    <p>천왕성은 목성, 토성, 해왕성의 강력한 중력장 사이에서 복잡한 중력 상호작용을 겪습니다. 이 중력 당김들은 천왕성의 공전 궤도를 케플러 궤도에서 미세하게 벗어나게 만드는 '섭동'을 일으킵니다.</p>
+    <p>특히 해왕성과의 궤도 공명은 천왕성의 위성들, 특히 미란다, 아리엘 등의 내부 위성들의 장기적 궤도 안정성에 영향을 미칩니다. 일부 위성은 조석력으로 인해 내부가 가열되어 지질 활동이 발생하는 것으로 보입니다.</p>
+    <p>목성과 토성의 중력은 태양계 전체의 천체 분포에 영향을 주어, 카이퍼 벨트 천체들이 천왕성 방향으로 진입하는 빈도를 간접적으로 조절합니다.</p>
+    <div class="modal-stats">
+      <div class="modal-stat"><div class="modal-stat-key">목성 거리</div><div class="modal-stat-val">~10 AU</div></div>
+      <div class="modal-stat"><div class="modal-stat-key">해왕성 거리</div><div class="modal-stat-val">~10 AU</div></div>
+      <div class="modal-stat"><div class="modal-stat-key">조석 가열 위성</div><div class="modal-stat-val">미란다 등</div></div>
+      <div class="modal-stat"><div class="modal-stat-key">궤도 섭동 주기</div><div class="modal-stat-val">수천 년</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ==================== CURSOR ====================
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursorRing');
+let mx = 0, my = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.transform = `translate(${mx-6}px, ${my-6}px)`;
+  cursorRing.style.transform = `translate(${mx-18}px, ${my-18}px)`;
+});
+
+// ==================== STARFIELD ====================
+const sf = document.getElementById('starfield');
+const ctx = sf.getContext('2d');
+let stars = [];
+function initStars() {
+  sf.width = window.innerWidth;
+  sf.height = document.body.scrollHeight;
+  stars = Array.from({length: 300}, () => ({
+    x: Math.random() * sf.width,
+    y: Math.random() * sf.height,
+    r: Math.random() * 1.5,
+    a: Math.random(),
+    speed: Math.random() * 0.003 + 0.001
+  }));
+}
+function drawStars() {
+  ctx.clearRect(0,0,sf.width,sf.height);
+  stars.forEach(s => {
+    s.a = 0.3 + 0.7 * Math.abs(Math.sin(Date.now() * s.speed));
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(168,230,230,${s.a})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(drawStars);
+}
+initStars();
+drawStars();
+window.addEventListener('resize', initStars);
+
+// ==================== HERO PLANET ====================
+const pc = document.getElementById('planet-canvas');
+const pctx = pc.getContext('2d');
+pc.width = 600; pc.height = 600;
+let planetAngle = 0;
+
+function drawPlanet() {
+  pctx.clearRect(0,0,600,600);
+  const cx = 300, cy = 300, r = 180;
+
+  // Glow
+  const grd = pctx.createRadialGradient(cx, cy, r*0.5, cx, cy, r*1.8);
+  grd.addColorStop(0, 'rgba(79,195,195,0.15)');
+  grd.addColorStop(1, 'rgba(79,195,195,0)');
+  pctx.beginPath();
+  pctx.arc(cx, cy, r*1.8, 0, Math.PI*2);
+  pctx.fillStyle = grd;
+  pctx.fill();
+
+  // Planet
+  const pGrd = pctx.createRadialGradient(cx-50, cy-50, 20, cx, cy, r);
+  pGrd.addColorStop(0, '#88dede');
+  pGrd.addColorStop(0.3, '#4FC3C3');
+  pGrd.addColorStop(0.7, '#1A6B8A');
+  pGrd.addColorStop(1, '#0a2540');
+  pctx.beginPath();
+  pctx.arc(cx, cy, r, 0, Math.PI*2);
+  pctx.fillStyle = pGrd;
+  pctx.fill();
+
+  // Bands
+  for(let i=0; i<5; i++) {
+    const by = cy - 80 + i*40;
+    const bh = 15 + i*3;
+    pctx.save();
+    pctx.beginPath();
+    pctx.arc(cx, cy, r, 0, Math.PI*2);
+    pctx.clip();
+    const bGrd = pctx.createLinearGradient(cx-r, by, cx+r, by+bh);
+    bGrd.addColorStop(0, 'rgba(168,230,230,0)');
+    bGrd.addColorStop(0.5, `rgba(168,230,230,${0.04 + i*0.01})`);
+    bGrd.addColorStop(1, 'rgba(168,230,230,0)');
+    pctx.fillStyle = bGrd;
+    pctx.fillRect(cx-r, by, r*2, bh);
+    pctx.restore();
+  }
+
+  // Rings - animated
+  pctx.save();
+  pctx.translate(cx, cy);
+  // Uranus tilts, so ring is nearly vertical
+  pctx.rotate(0.3);
+
+  for(let i=0; i<5; i++) {
+    const rr = r + 30 + i*18;
+    const opacity = 0.15 - i*0.02;
+    pctx.beginPath();
+    pctx.ellipse(0, 0, rr, rr*0.12, 0, 0, Math.PI*2);
+    pctx.strokeStyle = `rgba(168,230,230,${opacity})`;
+    pctx.lineWidth = 3 - i*0.4;
+    pctx.stroke();
+  }
+  pctx.restore();
+
+  // Shine
+  const sGrd = pctx.createRadialGradient(cx-60, cy-70, 5, cx-40, cy-50, r*0.7);
+  sGrd.addColorStop(0, 'rgba(255,255,255,0.25)');
+  sGrd.addColorStop(1, 'rgba(255,255,255,0)');
+  pctx.beginPath();
+  pctx.arc(cx, cy, r, 0, Math.PI*2);
+  pctx.fillStyle = sGrd;
+  pctx.fill();
+
+  planetAngle += 0.003;
+  requestAnimationFrame(drawPlanet);
+}
+drawPlanet();
+
+// ==================== SIMULATOR ====================
+const sc = document.getElementById('simCanvas');
+const sctx = sc.getContext('2d');
+let simState = {
+  solar: 50, flare: false,
+  meteor: 30, impactActive: false, impactTimer: 0,
+  jup: 40, nep: 60, resonance: true,
+  time: 0
+};
+let particles = [];
+let impacts = [];
+
+function resizeSim() {
+  const wrap = sc.parentElement;
+  const w = wrap.clientWidth || 800;
+  const h = wrap.clientHeight || 480;
+  sc.width = w;
+  sc.height = h;
+}
+// requestAnimationFrame으로 DOM 렌더 후 실행 (0x0 방지)
+requestAnimationFrame(() => { resizeSim(); drawSim(); });
+window.addEventListener('resize', resizeSim);
+
+function updateSim() {
+  simState.solar = +document.getElementById('solarWind').value;
+  simState.flare = document.getElementById('flareToggle').classList.contains('active');
+  simState.meteor = +document.getElementById('meteorSize').value;
+  simState.jup = +document.getElementById('jupGrav').value;
+  simState.nep = +document.getElementById('nepGrav').value;
+  simState.resonance = document.getElementById('resonanceToggle').classList.contains('active');
+
+  document.getElementById('solarVal').textContent = simState.solar;
+  document.getElementById('meteorVal').textContent = simState.meteor;
+  document.getElementById('jupVal').textContent = simState.jup;
+  document.getElementById('nepVal').textContent = simState.nep;
+
+  const solarLvl = simState.solar < 33 ? '약함' : simState.solar < 66 ? '보통' : '강함';
+  document.getElementById('solarLabel').textContent = solarLvl;
+
+  // Update readouts
+  const magnetoMod = 1 + (simState.solar/100)*0.6 - (simState.jup/100)*0.2;
+  document.getElementById('readMagneto').textContent = magnetoMod.toFixed(2);
+  const tempMod = -224 + Math.floor((simState.solar/100)*40) + Math.floor((simState.jup+simState.nep)/100*20);
+  document.getElementById('readTemp').textContent = tempMod;
+  const ringMod = 100 + Math.floor((simState.meteor/100)*60);
+  document.getElementById('readRing').textContent = ringMod;
+}
+
+function triggerImpact() {
+  simState.impactActive = true;
+  simState.impactTimer = 160;
+
+  // 소행성이 왼쪽 위에서 날아오는 연출
+  const W = sc.width, H = sc.height;
+  const cx = W/2, cy = H/2;
+  const size = simState.meteor;
+
+  // 폭발 파티클 (행성 표면)
+  const count = 40 + Math.floor(size * 1.2);
+  for (let i = 0; i < count; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const speed = 2 + Math.random() * 9 * (size / 30);
+    const hue = 20 + Math.random() * 50;
+    impacts.push({
+      x: cx, y: cy,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      life: 0.9 + Math.random() * 0.4,
+      aurora: false,
+      color: `${255},${Math.floor(80+Math.random()*100)},${Math.floor(Math.random()*60)}`
+    });
+  }
+
+  // 충격파 링 파티클
+  for (let i = 0; i < 60; i++) {
+    const angle = (i / 60) * Math.PI * 2;
+    const speed = 3 + size / 15;
+    impacts.push({
+      x: cx, y: cy,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed * 0.5,
+      life: 1,
+      aurora: false,
+      color: `255,200,100`
+    });
+  }
+
+  // 잔해 파티클
+  for (let i = 0; i < 30; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    impacts.push({
+      x: cx + (Math.random()-0.5)*40,
+      y: cy + (Math.random()-0.5)*40,
+      vx: (Math.random()-0.5) * 5,
+      vy: (Math.random()-0.5) * 5,
+      life: 0.6 + Math.random() * 0.6,
+      aurora: true,
+      color: `200,230,255`
+    });
+  }
+}
+
+function resetSim() {
+  document.getElementById('solarWind').value = 50;
+  document.getElementById('meteorSize').value = 30;
+  document.getElementById('jupGrav').value = 40;
+  document.getElementById('nepGrav').value = 60;
+  document.getElementById('flareToggle').classList.remove('active');
+  document.getElementById('resonanceToggle').classList.add('active');
+  particles = []; impacts = [];
+  simState.impactActive = false;
+  updateSim();
+}
+
+function drawSim() {
+  const W = sc.width, H = sc.height;
+  const cx = W/2, cy = H/2;
+  const T = simState.time;
+
+  // 값 정규화
+  const solarN   = simState.solar / 100;   // 0~1
+  const flareOn  = simState.flare;
+  const meteorN  = simState.meteor / 100;
+  const jupN     = simState.jup / 100;
+  const nepN     = simState.nep / 100;
+  const gravN    = (jupN + nepN) / 2;
+  const solarEff = solarN * (flareOn ? 2.2 : 1);  // 플레어 보정
+
+  // ── BG ──────────────────────────────────────────
+  sctx.fillStyle = '#02050F';
+  sctx.fillRect(0, 0, W, H);
+
+  // 태양풍 강도에 따라 배경 빛 번짐
+  if (solarEff > 0.3) {
+    const bgGlow = sctx.createRadialGradient(0, cy, 0, 0, cy, W * 0.7);
+    const gcol = flareOn ? `rgba(255,200,80,${solarEff*0.18})` : `rgba(79,195,195,${solarEff*0.12})`;
+    bgGlow.addColorStop(0, gcol);
+    bgGlow.addColorStop(1, 'rgba(0,0,0,0)');
+    sctx.fillStyle = bgGlow;
+    sctx.fillRect(0, 0, W, H);
+  }
+
+  // 그리드
+  sctx.strokeStyle = 'rgba(79,195,195,0.04)';
+  sctx.lineWidth = 1;
+  for (let x = 0; x < W; x += 40) { sctx.beginPath(); sctx.moveTo(x,0); sctx.lineTo(x,H); sctx.stroke(); }
+  for (let y = 0; y < H; y += 40) { sctx.beginPath(); sctx.moveTo(0,y); sctx.lineTo(W,y); sctx.stroke(); }
+
+  simState.time++;
+
+  // ── 자기권 버블 (중력값으로 왜곡) ───────────────
+  // 중력이 강할수록 자기권이 찌그러짐
+  const magRX = 160 + gravN * 40;
+  const magRY = 160 - gravN * 50;
+  const magAlpha = 0.12 + gravN * 0.18;
+  const magGlow = sctx.createRadialGradient(cx, cy, 60, cx, cy, magRX);
+  magGlow.addColorStop(0, `rgba(155,93,229,0)`);
+  magGlow.addColorStop(0.7, `rgba(155,93,229,${magAlpha})`);
+  magGlow.addColorStop(1, `rgba(155,93,229,0)`);
+  sctx.save();
+  sctx.translate(cx, cy);
+  sctx.scale(1, magRY / magRX);
+  sctx.beginPath();
+  sctx.arc(0, 0, magRX, 0, Math.PI * 2);
+  sctx.fillStyle = magGlow;
+  sctx.fill();
+  sctx.restore();
+
+  // 자기장 필드라인 (중력 강할수록 더 많이, 더 밝게 왜곡)
+  if (simState.resonance) {
+    const lineCount = 4 + Math.round(gravN * 6);
+    for (let i = 0; i < lineCount; i++) {
+      const baseAngle = (T * 0.008) + (i / lineCount) * Math.PI * 2;
+      const rx = magRX * (0.6 + i * 0.08);
+      const ry = magRY * (0.55 + i * 0.07);
+      const alpha = 0.15 + gravN * 0.4 - i * 0.02;
+      sctx.save();
+      sctx.translate(cx, cy);
+      sctx.rotate(baseAngle);
+      sctx.beginPath();
+      sctx.ellipse(0, 0, rx, ry * 0.35, 0, 0, Math.PI * 2);
+      sctx.strokeStyle = `rgba(155,93,229,${Math.max(0, alpha)})`;
+      sctx.lineWidth = 1 + gravN * 1.5;
+      sctx.stroke();
+      sctx.restore();
+    }
+  }
+
+  // ── 태양풍 파티클 ────────────────────────────────
+  if (solarN > 0.05) {
+    const spawnCount = Math.floor(solarN * 18) * (flareOn ? 5 : 1);
+    for (let i = 0; i < spawnCount; i++) {
+      const spreadY = flareOn ? H : H * 0.6;
+      const startY = cy - spreadY/2 + Math.random() * spreadY;
+      const speed = 3 + solarN * 8 + Math.random() * 4;
+      const size = flareOn ? 2.5 + Math.random()*3 : 1.5 + Math.random()*2;
+      particles.push({
+        x: -10, y: startY,
+        vx: speed, vy: (Math.random() - 0.5) * 1.2,
+        life: 1,
+        maxLife: 1,
+        size,
+        r: flareOn ? 255 : 79,
+        g: flareOn ? 200 : 195,
+        b: flareOn ? 80  : 195,
+      });
+    }
+  }
+
+  particles = particles.filter(p => p.life > 0);
+  particles.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    p.life -= flareOn ? 0.012 : 0.009;
+    if (p.x > W || p.y < 0 || p.y > H) { p.life = 0; return; }
+
+    const dist = Math.hypot(p.x - cx, p.y - cy);
+    // 행성 자기권에 닿으면 편향 & 소멸
+    if (dist < magRX * 0.55) {
+      // 자기권 충돌 → 오로라 스파크
+      if (Math.random() < 0.3) {
+        impacts.push({
+          x: p.x, y: p.y,
+          vx: (Math.random()-0.5)*3, vy: (Math.random()-0.5)*3,
+          life: 0.8,
+          aurora: true,
+          color: flareOn ? `255,220,80` : `80,255,200`
+        });
+      }
+      p.life = 0; return;
+    }
+
+    // 꼬리 효과
+    const tail = Math.min(p.vx * 3, 30);
+    const grad = sctx.createLinearGradient(p.x - tail, p.y, p.x, p.y);
+    grad.addColorStop(0, `rgba(${p.r},${p.g},${p.b},0)`);
+    grad.addColorStop(1, `rgba(${p.r},${p.g},${p.b},${p.life * 0.9})`);
+    sctx.beginPath();
+    sctx.moveTo(p.x - tail, p.y);
+    sctx.lineTo(p.x, p.y);
+    sctx.strokeStyle = grad;
+    sctx.lineWidth = p.size;
+    sctx.stroke();
+
+    sctx.beginPath();
+    sctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    sctx.fillStyle = `rgba(${p.r},${p.g},${p.b},${p.life})`;
+    sctx.fill();
+  });
+
+  // ── 고리 시스템 (충돌값으로 변화) ──────────────
+  sctx.save();
+  sctx.translate(cx, cy);
+  sctx.rotate(0.28 + gravN * 0.15); // 중력으로 기울기 변화
+  const ringExpand = 1 + meteorN * 0.8;   // 충돌 → 고리 확장
+  const ringBright = 0.25 + meteorN * 0.55; // 충돌 → 밝기 증가
+  for (let i = 0; i < 7; i++) {
+    const rr = (80 + i * 18) * ringExpand;
+    const thickness = (2.5 - i * 0.2) * (1 + meteorN);
+    const shimmer = 0.7 + 0.3 * Math.sin(T * 0.03 + i);
+    sctx.beginPath();
+    sctx.ellipse(0, 0, rr, rr * 0.13, 0, 0, Math.PI * 2);
+    sctx.strokeStyle = `rgba(168,230,230,${(ringBright - i * 0.03) * shimmer})`;
+    sctx.lineWidth = thickness;
+    sctx.stroke();
+    // 충돌 파편 느낌
+    if (meteorN > 0.4) {
+      for (let d = 0; d < 3; d++) {
+        const da = Math.random() * Math.PI * 2;
+        const dx = Math.cos(da) * rr, dy = Math.sin(da) * rr * 0.13;
+        sctx.beginPath();
+        sctx.arc(dx, dy, 2 * meteorN, 0, Math.PI * 2);
+        sctx.fillStyle = `rgba(255,200,150,${meteorN * 0.8})`;
+        sctx.fill();
+      }
+    }
+  }
+  sctx.restore();
+
+  // ── 행성 본체 (태양풍/중력에 따라 색 변화) ──────
+  const planetR = 72 + gravN * 12; // 중력 강할수록 약간 더 크게 (조석팽창)
+
+  // 태양풍에 의한 색상 변화: 강하면 표면이 뜨거워져 붉어짐
+  const rC = Math.round(136 + solarEff * 80);
+  const gC = Math.round(222 - solarEff * 60);
+  const bC = Math.round(222 - solarEff * 40);
+
+  // 중력 왜곡으로 타원형
+  sctx.save();
+  sctx.translate(cx, cy);
+  sctx.scale(1 + gravN * 0.08, 1 - gravN * 0.06);
+
+  const pg = sctx.createRadialGradient(-planetR*0.3, -planetR*0.3, planetR*0.05, 0, 0, planetR);
+  pg.addColorStop(0,   `rgb(${rC},${gC},${bC})`);
+  pg.addColorStop(0.35,`rgba(79,195,195,1)`);
+  pg.addColorStop(0.75,`rgba(26,107,138,1)`);
+  pg.addColorStop(1,   `rgba(5,20,50,1)`);
+  sctx.beginPath();
+  sctx.arc(0, 0, planetR, 0, Math.PI * 2);
+  sctx.fillStyle = pg;
+  sctx.fill();
+
+  // 대기 밴드
+  for (let b = 0; b < 5; b++) {
+    const by = -planetR * 0.6 + b * (planetR * 0.3);
+    const bAlpha = (0.06 + solarEff * 0.08) * (1 - b * 0.1);
+    sctx.save();
+    sctx.beginPath();
+    sctx.arc(0, 0, planetR, 0, Math.PI * 2);
+    sctx.clip();
+    sctx.fillStyle = `rgba(${rC},${gC+30},${bC},${bAlpha})`;
+    sctx.fillRect(-planetR, by, planetR*2, planetR*0.18);
+    sctx.restore();
+  }
+
+  // 광택
+  const shine = sctx.createRadialGradient(-planetR*0.4, -planetR*0.4, 2, -planetR*0.2, -planetR*0.2, planetR*0.75);
+  shine.addColorStop(0, 'rgba(255,255,255,0.28)');
+  shine.addColorStop(1, 'rgba(255,255,255,0)');
+  sctx.beginPath();
+  sctx.arc(0, 0, planetR, 0, Math.PI * 2);
+  sctx.fillStyle = shine;
+  sctx.fill();
+  sctx.restore();
+
+  // ── 오로라 (태양풍이 강할 때) ──────────────────
+  if (solarEff > 0.4) {
+    const auroraCount = Math.floor(solarEff * 8);
+    for (let a = 0; a < auroraCount; a++) {
+      const aAngle = (T * 0.02 + a * (Math.PI*2/auroraCount));
+      const aR = planetR + 8 + Math.sin(T*0.05+a)*6;
+      const ax = cx + Math.cos(aAngle) * aR;
+      const ay = cy + Math.sin(aAngle) * aR;
+      const aGrad = sctx.createRadialGradient(ax, ay, 0, ax, ay, 22);
+      const aColor = flareOn ? `255,200,50` : `80,255,180`;
+      aGrad.addColorStop(0, `rgba(${aColor},${solarEff * 0.9})`);
+      aGrad.addColorStop(1, `rgba(${aColor},0)`);
+      sctx.beginPath();
+      sctx.arc(ax, ay, 22, 0, Math.PI * 2);
+      sctx.fillStyle = aGrad;
+      sctx.fill();
+    }
+  }
+
+  // ── 행성 외곽 글로우 ─────────────────────────────
+  const outerGlow = sctx.createRadialGradient(cx, cy, planetR * 0.8, cx, cy, planetR * 2.4);
+  const glowAlpha = 0.18 + solarEff * 0.25 + gravN * 0.1;
+  outerGlow.addColorStop(0, `rgba(79,195,195,${glowAlpha})`);
+  outerGlow.addColorStop(0.5, `rgba(79,195,195,${glowAlpha * 0.3})`);
+  outerGlow.addColorStop(1, 'rgba(79,195,195,0)');
+  sctx.beginPath();
+  sctx.arc(cx, cy, planetR * 2.4, 0, Math.PI * 2);
+  sctx.fillStyle = outerGlow;
+  sctx.fill();
+
+  // 플레어 이벤트: 강한 섬광
+  if (flareOn) {
+    const flareAlpha = 0.08 + 0.06 * Math.sin(T * 0.15);
+    const flareGrad = sctx.createRadialGradient(cx, cy, planetR, cx, cy, W * 0.6);
+    flareGrad.addColorStop(0, `rgba(255,220,100,${flareAlpha})`);
+    flareGrad.addColorStop(1, 'rgba(255,200,80,0)');
+    sctx.fillStyle = flareGrad;
+    sctx.fillRect(0, 0, W, H);
+  }
+
+  // ── 목성 / 해왕성 ────────────────────────────────
+  const jupAngle = T * 0.004;
+  const jupDist  = 195 + gravN * 30;
+  const jupX = cx + Math.cos(jupAngle) * jupDist;
+  const jupY = cy + Math.sin(jupAngle) * (jupDist * 0.38);
+  const jupSize = 10 + jupN * 14;
+
+  // 중력선 (점선처럼 대시)
+  if (jupN > 0.1) {
+    sctx.save();
+    sctx.setLineDash([6, 8]);
+    sctx.beginPath();
+    sctx.moveTo(jupX, jupY);
+    sctx.lineTo(cx, cy);
+    sctx.strokeStyle = `rgba(255,165,80,${jupN * 0.55})`;
+    sctx.lineWidth = 1.5 + jupN * 2;
+    sctx.stroke();
+    sctx.setLineDash([]);
+    sctx.restore();
+  }
+
+  // 목성 글로우
+  const jGlow = sctx.createRadialGradient(jupX, jupY, 0, jupX, jupY, jupSize * 2.5);
+  jGlow.addColorStop(0, `rgba(255,165,80,${0.5 + jupN*0.4})`);
+  jGlow.addColorStop(1, 'rgba(255,140,50,0)');
+  sctx.beginPath();
+  sctx.arc(jupX, jupY, jupSize * 2.5, 0, Math.PI*2);
+  sctx.fillStyle = jGlow;
+  sctx.fill();
+  sctx.beginPath();
+  sctx.arc(jupX, jupY, jupSize, 0, Math.PI*2);
+  sctx.fillStyle = `rgba(255,165,80,1)`;
+  sctx.fill();
+
+  sctx.fillStyle = 'rgba(255,200,120,0.9)';
+  sctx.font = `bold 11px 'Share Tech Mono'`;
+  sctx.textAlign = 'center';
+  sctx.fillText('목성 JUP', jupX, jupY + jupSize + 14);
+
+  // 해왕성
+  const nepAngle = -T * 0.0025 + Math.PI * 0.7;
+  const nepDist  = 185 + gravN * 25;
+  const nepX = cx + Math.cos(nepAngle) * nepDist;
+  const nepY = cy + Math.sin(nepAngle) * (nepDist * 0.4);
+  const nepSize = 9 + nepN * 12;
+
+  if (nepN > 0.1) {
+    sctx.save();
+    sctx.setLineDash([6, 8]);
+    sctx.beginPath();
+    sctx.moveTo(nepX, nepY);
+    sctx.lineTo(cx, cy);
+    sctx.strokeStyle = `rgba(100,150,255,${nepN * 0.55})`;
+    sctx.lineWidth = 1.5 + nepN * 2;
+    sctx.stroke();
+    sctx.setLineDash([]);
+    sctx.restore();
+  }
+
+  const nGlow = sctx.createRadialGradient(nepX, nepY, 0, nepX, nepY, nepSize * 2.5);
+  nGlow.addColorStop(0, `rgba(100,150,255,${0.5 + nepN*0.4})`);
+  nGlow.addColorStop(1, 'rgba(80,120,255,0)');
+  sctx.beginPath();
+  sctx.arc(nepX, nepY, nepSize * 2.5, 0, Math.PI*2);
+  sctx.fillStyle = nGlow;
+  sctx.fill();
+  sctx.beginPath();
+  sctx.arc(nepX, nepY, nepSize, 0, Math.PI*2);
+  sctx.fillStyle = `rgba(100,150,255,1)`;
+  sctx.fill();
+
+  sctx.fillStyle = 'rgba(150,190,255,0.9)';
+  sctx.font = `bold 11px 'Share Tech Mono'`;
+  sctx.textAlign = 'center';
+  sctx.fillText('해왕성 NEP', nepX, nepY + nepSize + 14);
+  sctx.textAlign = 'left';
+
+  // ── 충돌 & 오로라 이펙트 파티클 ─────────────────
+  impacts = impacts.filter(p => p.life > 0);
+  impacts.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    p.vx *= 0.94; p.vy *= 0.94;
+    p.life -= p.aurora ? 0.025 : 0.018;
+
+    const sz = p.aurora ? 6 + (1-p.life)*8 : 3 + (1-p.life)*4;
+    const ig = sctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, sz);
+    ig.addColorStop(0, `rgba(${p.color},${p.life})`);
+    ig.addColorStop(1, `rgba(${p.color},0)`);
+    sctx.beginPath();
+    sctx.arc(p.x, p.y, sz, 0, Math.PI*2);
+    sctx.fillStyle = ig;
+    sctx.fill();
+  });
+
+  if (simState.impactActive && simState.impactTimer > 0) {
+    simState.impactTimer--;
+    // 충돌 중 화면 흔들림 효과 (테두리 플래시)
+    if (simState.impactTimer > 80) {
+      sctx.fillStyle = `rgba(255,120,50,${(simState.impactTimer-80)/40 * 0.15})`;
+      sctx.fillRect(0,0,W,H);
+    }
+    if (simState.impactTimer <= 0) simState.impactActive = false;
+  }
+
+  // ── HUD 텍스트 ──────────────────────────────────
+  const s2 = Math.floor(T/60)%60;
+  const m2 = Math.floor(T/3600)%60;
+  const h2 = Math.floor(T/216000)%24;
+  document.getElementById('simTime').textContent =
+    `T+ ${String(h2).padStart(2,'0')}:${String(m2).padStart(2,'0')}:${String(s2).padStart(2,'0')}`;
+
+  const mode = flareOn ? '🔥 SOLAR FLARE EVENT' : simState.impactActive ? '💥 IMPACT EVENT' : '● NORMAL MODE';
+  document.getElementById('simMode').textContent = mode;
+
+  requestAnimationFrame(drawSim);
+}
+
+// ==================== TABS ====================
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ==================== MODALS ====================
+function openModal(id) {
+  document.getElementById('modal-'+id).classList.add('open');
+}
+function closeModal(id) {
+  document.getElementById('modal-'+id).classList.remove('open');
+}
+document.querySelectorAll('.modal-overlay').forEach(m => {
+  m.addEventListener('click', e => { if(e.target === m) m.classList.remove('open'); });
+});
+
+// ==================== REVEAL ====================
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+updateSim();
+</script>
+</body>
+</html>
