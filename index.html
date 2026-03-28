@@ -3,26 +3,15 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>태양계 시뮬레이터</title>
+<title>고급 태양계 시뮬레이터</title>
 <style>
-    body {
-        margin: 0;
-        background: black;
-        color: white;
-        font-family: sans-serif;
-        overflow: hidden;
-    }
-    #ui {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        background: rgba(0,0,0,0.6);
-        padding: 10px;
-        border-radius: 10px;
-    }
-    input {
-        width: 100px;
-    }
+body { margin:0; background:black; color:white; font-family:sans-serif; }
+#ui {
+    position:absolute; top:10px; left:10px;
+    background:rgba(0,0,0,0.7);
+    padding:10px; border-radius:10px;
+}
+button { margin-top:5px; }
 </style>
 </head>
 <body>
@@ -30,127 +19,175 @@
 <canvas id="canvas"></canvas>
 
 <div id="ui">
-    <div>속도: <input type="range" id="speed" min="0.1" max="5" step="0.1" value="1"></div>
-    <div>시간 배속: <input type="range" id="time" min="0.1" max="5" step="0.1" value="1"></div>
+    <div>선택: <span id="selected">없음</span></div>
+    질량 <input type="range" id="mass" min="1" max="50"><br>
+    속도 <input type="range" id="speed" min="0" max="5" step="0.1"><br>
+    <button onclick="togglePause()">일시정지</button>
+    <button onclick="addPlanet()">행성 추가</button>
 </div>
 
 <script>
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
-
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const G = 0.1; // 중력 상수 (단순화)
+const G = 0.05;
+let paused = false;
+let selected = null;
 
-let timeScale = 1;
-
-document.getElementById("time").oninput = e => {
-    timeScale = parseFloat(e.target.value);
-};
-
-// 태양
 const sun = {
-    x: canvas.width / 2,
-    y: canvas.height / 2,
+    x: canvas.width/2,
+    y: canvas.height/2,
     mass: 10000,
     radius: 20
 };
 
-// 행성 + 위성
-let bodies = [
-    {
-        name: "지구",
-        x: sun.x + 150,
+let bodies = [];
+
+function createPlanet(dist, speed, color) {
+    return {
+        x: sun.x + dist,
         y: sun.y,
         vx: 0,
-        vy: 2,
+        vy: speed,
         mass: 10,
         radius: 6,
-        color: "blue",
+        color: color,
+        trail: [],
         moons: [
-            {
-                x: 150,
-                y: 0,
-                vx: 0,
-                vy: 3,
-                radius: 2
-            }
+            { x:20, y:0, vx:0, vy:1.5, radius:2 }
         ]
-    }
-];
+    };
+}
 
-// 중력 계산
-function applyGravity(body) {
+// 초기 행성
+bodies.push(createPlanet(100,2,"blue"));
+bodies.push(createPlanet(180,1.5,"red"));
+bodies.push(createPlanet(260,1.2,"orange"));
+
+canvas.addEventListener("click", e=>{
+    let mx = e.clientX;
+    let my = e.clientY;
+
+    selected = null;
+
+    bodies.forEach(b=>{
+        let dx = b.x - mx;
+        let dy = b.y - my;
+        if(Math.sqrt(dx*dx+dy*dy) < b.radius+5){
+            selected = b;
+        }
+    });
+
+    document.getElementById("selected").innerText = selected ? "행성 선택됨" : "없음";
+});
+
+// 슬라이더
+document.getElementById("mass").oninput = e=>{
+    if(selected) selected.mass = parseFloat(e.target.value);
+};
+document.getElementById("speed").oninput = e=>{
+    if(selected) selected.vy = parseFloat(e.target.value);
+};
+
+function togglePause(){
+    paused = !paused;
+}
+
+function addPlanet(){
+    bodies.push(createPlanet(Math.random()*300+50, Math.random()*2, "white"));
+}
+
+// 중력
+function applyGravity(body){
     let dx = sun.x - body.x;
     let dy = sun.y - body.y;
-    let dist = Math.sqrt(dx*dx + dy*dy);
+    let dist = Math.sqrt(dx*dx+dy*dy);
 
-    let force = G * sun.mass / (dist * dist);
+    let force = G * sun.mass / (dist*dist);
 
     body.vx += force * dx/dist;
     body.vy += force * dy/dist;
 }
 
-// 업데이트
-function update() {
-    bodies.forEach(body => {
-        applyGravity(body);
+function update(){
+    if(paused) return;
 
-        body.x += body.vx * timeScale;
-        body.y += body.vy * timeScale;
+    bodies.forEach(b=>{
+        applyGravity(b);
+
+        b.x += b.vx;
+        b.y += b.vy;
+
+        // 궤도 기록
+        b.trail.push({x:b.x, y:b.y});
+        if(b.trail.length > 100) b.trail.shift();
 
         // 위성
-        body.moons.forEach(moon => {
-            let dx = body.x - (body.x + moon.x);
-            let dy = body.y - (body.y + moon.y);
-            let dist = Math.sqrt(dx*dx + dy*dy);
+        b.moons.forEach(m=>{
+            let dx = -m.x;
+            let dy = -m.y;
+            let dist = Math.sqrt(dx*dx+dy*dy);
 
-            let force = 0.05 / (dist * dist);
+            let force = 0.02 / (dist*dist);
 
-            moon.vx += force * dx/dist;
-            moon.vy += force * dy/dist;
+            m.vx += force * dx/dist;
+            m.vy += force * dy/dist;
 
-            moon.x += moon.vx;
-            moon.y += moon.vy;
+            m.x += m.vx;
+            m.y += m.vy;
         });
     });
 }
 
-// 그리기
-function draw() {
-    ctx.fillStyle = "black";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+function draw(){
+    ctx.fillStyle="black";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
 
-    // 태양 (빛 효과)
-    let gradient = ctx.createRadialGradient(sun.x, sun.y, 0, sun.x, sun.y, 40);
-    gradient.addColorStop(0, "yellow");
-    gradient.addColorStop(1, "transparent");
+    // 태양
+    let g = ctx.createRadialGradient(sun.x,sun.y,0,sun.x,sun.y,40);
+    g.addColorStop(0,"yellow");
+    g.addColorStop(1,"transparent");
 
-    ctx.fillStyle = gradient;
+    ctx.fillStyle=g;
     ctx.beginPath();
-    ctx.arc(sun.x, sun.y, 40, 0, Math.PI * 2);
+    ctx.arc(sun.x,sun.y,40,0,Math.PI*2);
     ctx.fill();
 
-    // 행성
-    bodies.forEach(body => {
-        ctx.fillStyle = body.color;
+    bodies.forEach(b=>{
+        // 궤도
         ctx.beginPath();
-        ctx.arc(body.x, body.y, body.radius, 0, Math.PI * 2);
+        b.trail.forEach((p,i)=>{
+            if(i==0) ctx.moveTo(p.x,p.y);
+            else ctx.lineTo(p.x,p.y);
+        });
+        ctx.strokeStyle="white";
+        ctx.stroke();
+
+        // 행성
+        ctx.fillStyle=b.color;
+        ctx.beginPath();
+        ctx.arc(b.x,b.y,b.radius,0,Math.PI*2);
         ctx.fill();
 
+        // 선택 표시
+        if(b===selected){
+            ctx.strokeStyle="yellow";
+            ctx.stroke();
+        }
+
         // 위성
-        body.moons.forEach(moon => {
-            ctx.fillStyle = "white";
+        b.moons.forEach(m=>{
+            ctx.fillStyle="white";
             ctx.beginPath();
-            ctx.arc(body.x + moon.x, body.y + moon.y, moon.radius, 0, Math.PI * 2);
+            ctx.arc(b.x+m.x,b.y+m.y,m.radius,0,Math.PI*2);
             ctx.fill();
         });
     });
 }
 
-// 루프
-function loop() {
+function loop(){
     update();
     draw();
     requestAnimationFrame(loop);
